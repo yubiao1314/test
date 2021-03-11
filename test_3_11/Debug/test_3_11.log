@@ -1,0 +1,3 @@
+﻿  test.c
+D:\test\test_3_11\test.c(13): warning C4716: “Count”: 必须返回一个值
+  test_3_11.vcxproj -> D:\test\test_3_11\Debug\test_3_11.exe
