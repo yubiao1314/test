@@ -7,7 +7,6 @@
 #define STACK_CRAT_SIZE 1
 using namespace std;
 
-
 typedef struct Stack
 {
 	int *base;
@@ -35,7 +34,7 @@ int EnStack(Stack&s,Elemy e)
 	s.top++;
 }//ÈëÕ»
  
-int OutStack(Stack&s,Elemy e)
+int OutStack(Stack&s,Elemy&e)
 {
 	if(s.top==s.base)return 0;
 	s.top--;
@@ -43,38 +42,35 @@ int OutStack(Stack&s,Elemy e)
 	return 1;
 }//³öÕ»
 
-int GetStack(Stack s,Elemy e)
+int GetStack(Stack s,Elemy&e)
 {
 	if(s.top==s.base)return 0;
 	e=*(s.top-1);
 	return 1;
 }//È¡Õ»¶¥ÔªËØ
 
-int main()
+void JudgeSign(SqStack s, char* arr)
 {
-	char arr[100]={0};
 	cout << "ÊäÈë×Ö·û£º" << endl;
-	cin>>arr;
-	SqStack s;
-	InitalStack(s);
-	int j=0;
-	for(int i=0;i<100;i++)
+	cin >> arr;
+	int j = 0;
+	for (int i = 0; i < 100; i++)
 	{
-		Elemy temp = 0;
-		if(arr[i]=='('||arr[i]==')'||arr[i]=='['||arr[i]==']')
+		char temp = 0;
+		if (arr[i] == '(' || arr[i] == ')' || arr[i] == '[' || arr[i] == ']')
 		{
-			EnStack(s,arr[i]);
+			EnStack(s, arr[i]);
 			j++;
-			if(j>=2)
+			if (j >= 2)
 			{
 				GetStack(s, temp);
-				if (temp - *(s.top - 2) >= 2 && temp - *(s.top - 2) <= 3)
+				if (temp - *(s.top - 2) >= 1 && temp - *(s.top - 2) <= 2)
 				{
 					OutStack(s, temp);
 					OutStack(s, temp);
 				}
 			}
-			
+
 		}
 		if (arr[i] == '\0')
 			break;
@@ -82,10 +78,18 @@ int main()
 	if (s.base == s.top)
 	{
 		cout << "À¨ºÅÆ¥Åä" << endl;
-	}else
+	}
+	else
 	{
 		cout << "À¨ºÅ²»Æ¥Åä" << endl;
 	}
-	system("pause");
+}//ÅÐ¶ÏÀ¨ºÅÆ¥Åä
+
+int main()
+{
+	char arr[100]={0};
+	SqStack s;
+	InitalStack(s);
+	JudgeSign(s, arr);//ÅÐ¶ÏÀ¨ºÅÆ¥Åä
 	return 0;
 }
