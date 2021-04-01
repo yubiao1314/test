@@ -1,0 +1,2 @@
+D:\test\test_3_29\Debug\test_3_29.exe
+D:\test\test_3_29\Debug\test_3_29.pdb
