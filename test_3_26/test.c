@@ -1,5 +1,15 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<string.h>
+
+int main()
+{
+	char arr1[100] = "g";
+	char arr2[100] = "a";
+	int a = strcmp(arr1, arr2);
+	return 0;
+}
+
 
 //double pow(int a, int b)
 //{
