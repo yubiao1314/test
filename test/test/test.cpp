@@ -1,40 +1,40 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<iostream>
-#define Status int
-#define Elemy char
-#define STACK_INIT_SIZE 100
-#define STACK_CRAT_SIZE 1
+#define STACK_INIT_SIZE 100//初始容量
+#define STACK_CRAT_SIZE 1//增量
+#define stauts  char
+#define Elem   char
 using namespace std;
 
 typedef struct Stack
 {
-	int *base;
-	int *top;
+	stauts *base;
+	stauts*top;
 	int stacksizeof;
 }SqStack;//栈
 
 int InitalStack(Stack&s)
 {
-	s.base=(int*)malloc(STACK_INIT_SIZE*sizeof(int));
+	s.base=(stauts*)malloc(STACK_INIT_SIZE*sizeof(stauts));
 	if(!s.base)exit(0);
 	s.top=s.base;
 	s.stacksizeof=STACK_INIT_SIZE;
 	return 1;
-}//初始化栈
+}//初始化栈，构建空栈
 
-int EnStack(Stack&s,Elemy e)
+int EnStack(Stack&s, Elem e)
 {
 	if(s.top-s.base>=STACK_INIT_SIZE)
 	{
-		s.base=(int*)realloc(s.base,(STACK_INIT_SIZE+STACK_CRAT_SIZE)*sizeof(int));
+		s.base=(stauts*)realloc(s.base,(STACK_INIT_SIZE+STACK_CRAT_SIZE)*sizeof(stauts));
 	}
 	if (!s.base)return 0;
 	*s.top=e;
 	s.top++;
 }//入栈
  
-int OutStack(Stack&s,Elemy&e)
+int OutStack(Stack&s, Elem&e)
 {
 	if(s.top==s.base)return 0;
 	s.top--;
@@ -42,14 +42,14 @@ int OutStack(Stack&s,Elemy&e)
 	return 1;
 }//出栈
 
-int GetStack(Stack s,Elemy&e)
+int GetStack(Stack s, Elem&e)
 {
 	if(s.top==s.base)return 0;
 	e=*(s.top-1);
 	return 1;
 }//取栈顶元素
 
-void JudgeSign(SqStack s, char* arr)
+void JudgeSign(SqStack s, Elem* arr)
 {
 	cout << "输入字符：" << endl;
 	cin >> arr;
@@ -83,13 +83,41 @@ void JudgeSign(SqStack s, char* arr)
 	{
 		cout << "括号不匹配" << endl;
 	}
-}//判断括号匹配
+}//判断括号匹配*/
 
+/*void D_o(SqStack& s)
+{
+	int a;
+	cin>>a;
+	cout << "你输入的十进制数："<< a<<endl;
+	while (1)
+	{
+		if (a >= 8)
+		{
+			EnStack(s, a % 8);
+			a = a / 8;
+		}
+		else
+		{
+			EnStack(s, a%8);
+			break;
+		}
+	}
+	cout << "转换的八进制数";
+	while (s.base != s.top)
+	{
+		int e;
+		OutStack(s, e);
+		cout << e;
+	}
+
+}*/
 int main()
 {
 	char arr[100]={0};
 	SqStack s;
-	InitalStack(s);
+	InitalStack(s);//初始化栈
 	JudgeSign(s, arr);//判断括号匹配
+	//D_o(s);//输入一个十进制数输出八进制数
 	return 0;
 }
